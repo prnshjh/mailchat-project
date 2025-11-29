@@ -23,7 +23,7 @@ const LandingPage = async () => {
         </h1>
         <div className="h-4"></div>
         <p className="mb-8 max-w-xl text-center text-xl text-gray-600">
-          Normal Human is a minimalistic, AI-powered email client that empowers
+          MailChat is a minimalistic, AI-powered email client that empowers
           you to manage your email with ease.
         </p>
         <div className="space-x-4">

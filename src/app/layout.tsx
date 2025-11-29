@@ -11,7 +11,7 @@ import KBar from "./mail/components/kbar";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
-  title: "Normal Human",
+  title: "MailChat",
   description: "An AI based email management service",
   icons: [{ rel: "icon", url: "/logo.png" }],
 };

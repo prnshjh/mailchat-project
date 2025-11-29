@@ -84,7 +84,7 @@ export const POST = async (req: Request) => {
 
     const result = await streamText({
       model: google("gemini-1.5-flash"),
-      system: "Hi I'm Normal Human AI",
+      system: "Hi I'm MailChat AI",
       messages: [
         {
           role: "system",
