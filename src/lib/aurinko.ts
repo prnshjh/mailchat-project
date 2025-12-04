@@ -41,6 +41,8 @@ export const getAurinkoUrl = async (serviceType: "Google" | "Office365") => {
 
 export const getAurinkoToken = async (code: string) => {
   try {
+    console.log("Requesting token with code:", code.substring(0, 10) + "...");
+    
     const response = await axios.post(
       `https://api.aurinko.io/v1/auth/token/${code}`,
       {},
@@ -52,6 +54,7 @@ export const getAurinkoToken = async (code: string) => {
       },
     );
 
+    console.log("Token response received");
     return response.data as {
       accountId: number;
       accessToken: string;
@@ -60,20 +63,24 @@ export const getAurinkoToken = async (code: string) => {
     };
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.error("Error fetching Aurinko token:", error.response?.data);
+      console.error("Aurinko token error:", error.response?.data);
+      console.error("Status:", error.response?.status);
     } else {
       console.error("Unexpected error fetching Aurinko token:", error);
     }
+    throw error;
   }
 };
 
 export const getAccountDetails = async (accessToken: string) => {
   try {
+    console.log("Fetching account details...");
     const response = await axios.get("https://api.aurinko.io/v1/account", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
+    console.log("Account details received");
     return response.data as {
       email: string;
       name: string;
@@ -81,6 +88,7 @@ export const getAccountDetails = async (accessToken: string) => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error("Error fetching account details:", error.response?.data);
+      console.error("Status:", error.response?.status);
     } else {
       console.error("Unexpected error fetching account details:", error);
     }
